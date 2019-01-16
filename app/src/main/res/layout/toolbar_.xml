@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="?attr/actionBarSize"
+                                            android:fitsSystemWindows="true"
+>
+    <!--layout_scrollFlags 设置 Toolbar滑动模式-->
+    <!--
+        scroll：需要滚动出屏幕的view需要设置该flag， 没有设置则view将被固定在屏幕顶部。
+        enterAlways: 使用该flag，则向下的滚动会使view变为可见状态。
+    -->
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+</android.support.design.widget.AppBarLayout>
