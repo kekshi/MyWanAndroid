@@ -5,9 +5,8 @@ import android.view.View
 import com.kekshi.library.base.BaseCompatFragment
 import com.kekshi.mywanandroid.R
 
-/**导航fragment*/
-class NavigationFragment : BaseCompatFragment() {
-    override val layoutId: Int = R.layout.fragment_navigation
+class CollectArticleFragment : BaseCompatFragment() {
+    override val layoutId: Int = R.layout.fragment_collect_article
 
     override fun lazyLoadData() {
     }
@@ -21,8 +20,8 @@ class NavigationFragment : BaseCompatFragment() {
          * this fragment using the provided parameters.
          * @return A new instance of fragment PageFragment.
          */
-        fun newInstance(): NavigationFragment {
-            return NavigationFragment()
+        fun newInstance(): CollectArticleFragment {
+            return CollectArticleFragment()
         }
     }
 }

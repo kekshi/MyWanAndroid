@@ -5,6 +5,7 @@ import android.view.View
 import com.kekshi.library.base.BaseCompatFragment
 import com.kekshi.mywanandroid.R
 
+/**知识fragment*/
 class KnowledgeFragment : BaseCompatFragment() {
     override val layoutId: Int = R.layout.fragment_knowledge
 

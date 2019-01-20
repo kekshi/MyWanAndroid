@@ -1,5 +1,7 @@
 package com.kekshi.mywanandroid.ui
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
@@ -15,6 +17,7 @@ import com.kekshi.library.base.BaseCompatActivity
 import com.kekshi.library.utils.PreferencesUtil
 import com.kekshi.library.utils.ToastUtils
 import com.kekshi.mywanandroid.R
+import com.kekshi.mywanandroid.ui.dialog.UserDialogFragment
 import com.kekshi.mywanandroid.ui.fragment.KnowledgeFragment
 import com.kekshi.mywanandroid.ui.fragment.NavigationFragment
 import com.kekshi.mywanandroid.ui.fragment.PageFragment
@@ -77,7 +80,29 @@ class MainActivity : BaseCompatActivity() {
     }
 
     private fun loginOut() {
+        val listener = object : UserDialogFragment.DialogButtonClickListener {
+            override fun positiveButtonClick(dialog: DialogInterface?) {
+                val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                //清空当前任务栈并新建任务栈
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
 
+                var userLogin: Boolean by PreferencesUtil<Boolean>("login", false)
+                userLogin = false
+
+                finish()
+            }
+
+            override fun negativeButtonClick(dialog: DialogInterface?) {
+
+            }
+        }
+        val dialogFragment = UserDialogFragment.Builder()
+            .setMessage("确定退出登陆吗?")
+            .setButtonListener(listener)
+            .build()
+        dialogFragment.show(supportFragmentManager, MainActivity::class.java.name)
     }
 
     private fun showFragmentIndex(index: Int) {
@@ -155,10 +180,20 @@ class MainActivity : BaseCompatActivity() {
 
     private fun initFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
-            pageFragment = fragmentManager.getFragment(savedInstanceState, PageFragment::class.java.simpleName) as PageFragment
-            knowledgeFragment = fragmentManager.getFragment(savedInstanceState, KnowledgeFragment::class.java.simpleName) as KnowledgeFragment
-            navigationFragment = fragmentManager.getFragment(savedInstanceState, NavigationFragment::class.java.simpleName) as NavigationFragment
-            projectFragment = fragmentManager.getFragment(savedInstanceState, ProjectFragment::class.java.simpleName) as ProjectFragment
+            pageFragment =
+                    fragmentManager.getFragment(savedInstanceState, PageFragment::class.java.simpleName) as PageFragment
+            knowledgeFragment = fragmentManager.getFragment(
+                savedInstanceState,
+                KnowledgeFragment::class.java.simpleName
+            ) as KnowledgeFragment
+            navigationFragment = fragmentManager.getFragment(
+                savedInstanceState,
+                NavigationFragment::class.java.simpleName
+            ) as NavigationFragment
+            projectFragment = fragmentManager.getFragment(
+                savedInstanceState,
+                ProjectFragment::class.java.simpleName
+            ) as ProjectFragment
             currentIndex = savedInstanceState.getInt(bottomIndex)
         } else {
             pageFragment = PageFragment.newInstance()

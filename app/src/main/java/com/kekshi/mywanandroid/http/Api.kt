@@ -1,12 +1,12 @@
 package com.example.administrator.wanandroid.http
 
 
+import com.kekshi.mywanandroid.bean.ArticleResponseBody
 import com.kekshi.mywanandroid.bean.BaseBean
+import com.kekshi.mywanandroid.bean.HttpResponse
 import com.kekshi.mywanandroid.bean.LoginBean
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * @author  : Alex
@@ -30,13 +30,13 @@ interface Api {
     ): Observable<BaseBean<LoginBean>>
 
 
-//    /**
-//     * 获取文章列表
-//     * http://www.wanandroid.com/article/list/0/json
-//     * @param page
-//     */
-//    @GET("article/list/{page}/json")
-//    fun getArticleList(@Path("page") page: Int): Observable<HttpResponse<ArticleResponseBody>>
+    /**
+     * 获取文章列表
+     * http://www.wanandroid.com/article/list/0/json
+     * @param page
+     */
+    @GET("article/list/{page}/json")
+    fun getArticleList(@Path("page") page: Int): Observable<HttpResponse<ArticleResponseBody>>
 //
 //    /**
 //     * 获取文章列表
