@@ -40,15 +40,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         btn_register.setOnClickListener {
 
-            val account = tie_phone_register.text?.trim().toString()
-            val password = tie_pswd_register.text?.trim().toString()
-            val password_re = tie_pswd_register_re.text?.trim().toString()
-
-            if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password) || TextUtils.isEmpty(password_re)) {
-                ToastUtils.showToast(getString(R.string.login_empty))
-            } else {
-                model.register(account, password, password_re)
-            }
+            register()
         }
 
         model.register.observe(this, Observer {
@@ -65,5 +57,17 @@ class RegisterFragment : Fragment() {
                 ToastUtils.showToast(it?.errorMsg!!)
             }
         })
+    }
+
+    private fun register() {
+        val account = tie_phone_register.text?.trim().toString()
+        val password = tie_pswd_register.text?.trim().toString()
+        val password_re = tie_pswd_register_re.text?.trim().toString()
+
+        if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password) || TextUtils.isEmpty(password_re)) {
+            ToastUtils.showToast(getString(R.string.login_empty))
+        } else {
+            model.register(account, password, password_re)
+        }
     }
 }

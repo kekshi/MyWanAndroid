@@ -15,15 +15,15 @@ abstract class BaseRepository<T, M> : Repository<M> {
      */
     override fun getDataList(pageSize: Int): Listing<M> {
         val pageConfig = PagedList.Config.Builder()
-            .setPageSize(pageSize)
-            .setPrefetchDistance(pageSize)
-            .setInitialLoadSizeHint(pageSize * 2)
-            .setEnablePlaceholders(false)
+            .setPageSize(pageSize)//每次加载数据的数量
+            .setPrefetchDistance(pageSize)//预取距离，给定UI中最后一个可见的Item，超过这个item读取下一段数据
+            .setInitialLoadSizeHint(pageSize * 2)//定义在第一次加载时加载多少项
+            .setEnablePlaceholders(true)//UI占位符
             .build()
 
         val stuDataSourceFractory = createDataBaseFactory()
         val pagedList = LivePagedListBuilder(stuDataSourceFractory, pageConfig)
-        val refreshState = Transformations.switchMap(stuDataSourceFractory.sourceLivaData){it.refreshStatus}
+        val refreshState = Transformations.switchMap(stuDataSourceFractory.sourceLivaData) { it.refreshStatus }
         val networkStatus = Transformations.switchMap(stuDataSourceFractory.sourceLivaData) { it.networkStatus }
 
         return Listing<M>(pagedList.build(),

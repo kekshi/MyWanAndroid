@@ -4,6 +4,14 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.ItemKeyedDataSource
 import java.util.concurrent.Executor
 
+/**
+ *
+ * 组件提供了一下三种模式的DataSource，我们在使用时只需根据自己的需求选择何时的实现子类：
+
+    PageKeyedDataSource：如果页面需要实现上一页、下一页，需要将请求的Token传递到下一步
+    ItemKeyedDataSource：程序需要根据上一条数据信息（ID）获取下一条数据时
+    PositionalDataSource：需要从数据存储中选择的任何位置获取数据页；例如，请求可能返回以位置1200开头的20个数据项
+ */
 abstract class BaseItemDataSource<T, M>(private var retryExecutor: Executor) : ItemKeyedDataSource<T, M>() {
     /**
      * 控制重新加载

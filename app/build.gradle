@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
+apply plugin: 'hunter-debug'
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -51,4 +51,6 @@ dependencies {
     testImplementation "android.arch.persistence.room:testing:$room_version"
 
     implementation "com.hyman:flowlayout-lib:$rootProject.flowLayout"
+    //https://github.com/Leaking/Hunter/blob/master/README_hunter_debug_ch.md
+    implementation 'com.quinn.hunter:hunter-debug-library:0.9.4'
 }

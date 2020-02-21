@@ -3,7 +3,6 @@ package com.kekshi.library.global;
 import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
-import android.widget.Toast;
 import com.kekshi.library.utils.PreferencesUtil;
 
 
@@ -25,7 +24,6 @@ public class GlobalApplication extends Application {
         handler = new Handler();
         mainThreadId = android.os.Process.myTid();
         PreferencesUtil.Companion.get(this);
-
     }
 
     /**

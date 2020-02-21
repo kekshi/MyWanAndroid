@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.hunter.library.debug.HunterDebug
 import com.kekshi.library.utils.PreferencesUtil
 import com.kekshi.library.utils.ToastUtils
 import com.kekshi.mywanandroid.R
@@ -38,16 +39,10 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         btn_login.setOnClickListener {
 
-            val account = tie_phone_login.text?.trim().toString()
-            val password = tie_pswd_login.text?.trim().toString()
-
-            if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password)) {
-                ToastUtils.showToast(getString(R.string.login_empty))
-            } else {
-                model.login(account, password)
-            }
+            login()
         }
 
         tv_register.setOnClickListener {
@@ -71,5 +66,17 @@ class LoginFragment : Fragment() {
                 ToastUtils.showToast(it?.errorMsg!!)
             }
         })
+    }
+
+    @HunterDebug
+    private fun login() {
+        val account = tie_phone_login.text?.trim().toString()
+        val password = tie_pswd_login.text?.trim().toString()
+
+        if (TextUtils.isEmpty(account) || TextUtils.isEmpty(password)) {
+            ToastUtils.showToast(getString(R.string.login_empty))
+        } else {
+            model.login(account, password)
+        }
     }
 }

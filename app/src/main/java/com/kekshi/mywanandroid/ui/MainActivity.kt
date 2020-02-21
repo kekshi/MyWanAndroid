@@ -118,12 +118,11 @@ class MainActivity : BaseCompatActivity() {
                     .hide(projectFragment)
             }
             1 -> {
-                toolbar.title = "知识"
-
-                transaction.show(knowledgeFragment)
+                toolbar.title = "项目"
+                transaction.show(projectFragment)
                     .hide(pageFragment)
+                    .hide(knowledgeFragment)
                     .hide(navigationFragment)
-                    .hide(projectFragment)
             }
             2 -> {
                 toolbar.title = "导航"
@@ -131,15 +130,13 @@ class MainActivity : BaseCompatActivity() {
                     .hide(pageFragment)
                     .hide(knowledgeFragment)
                     .hide(projectFragment)
-
             }
             3 -> {
-                toolbar.title = "项目"
-                transaction.show(projectFragment)
+                toolbar.title = "知识"
+                transaction.show(knowledgeFragment)
                     .hide(pageFragment)
-                    .hide(knowledgeFragment)
                     .hide(navigationFragment)
-
+                    .hide(projectFragment)
             }
             else -> {
 
